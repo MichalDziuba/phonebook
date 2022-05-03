@@ -1,0 +1,18 @@
+.form{
+    box-sizing: border-box;
+    display: block;
+}
+
+.form__button{
+    margin-top: 30px;
+    box-sizing: border-box;
+    width: 200px;
+    height: 40px;
+    border-radius: 8px;
+    border: none;
+    font-size: 18px;
+}
+.form__button:hover{
+    background-color: rgb(63, 196, 248);
+    color: white;
+}
