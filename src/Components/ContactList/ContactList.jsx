@@ -6,25 +6,22 @@ import { useDispatch, useSelector } from "react-redux";
 import Filter from "../Filter/Filter";
 import { asyncDeleteContact } from "../../Redux/reducers";
 import axios from "axios";
-import {asyncFetchContacts} from '../../Redux/reducers'
+import { asyncFetchContacts } from "../../Redux/reducers";
+
 axios.defaults.baseURL = "https://62486dce20197bb4626917a1.mockapi.io/";
 
 const ContactList = () => {
   const contacts = useSelector((state) => state.phonebook.items);
   const filter = useSelector((state) => state.phonebook.filter);
-const dispatch = useDispatch();
-  const status = useSelector(state => state.phonebook.status);
-
-  // console.log(status)
-  // console.log(filter)
-  // console.log(contacts)
+  const dispatch = useDispatch();
+  const status = useSelector((state) => state.phonebook.status);
+  const token = useSelector((state) => state.phonebook.userData.token);
   useEffect(() => {
-    if (status === 'idle') {
-      dispatch(asyncFetchContacts())
+    if (status === "idle") {
+      dispatch(asyncFetchContacts(token));
     }
-  },[status,dispatch])
+  }, [status, dispatch,]);
   return (
-
     <div>
       {contacts.length > 0 ? (
         <>
@@ -32,7 +29,9 @@ const dispatch = useDispatch();
           <Filter />
           <ul className={styles.contact__list}>
             {contacts
-              .filter(({ name }) => name.toLowerCase().includes(filter.toLowerCase()))
+              .filter(({ name }) =>
+                name.toLowerCase().includes(filter.toLowerCase())
+              )
               .map((item) => (
                 <li key={nanoid()} className={styles.contact__item}>
                   {item.name}: {item.number}
@@ -40,7 +39,7 @@ const dispatch = useDispatch();
                     className={styles.button__delete}
                     type="button"
                     // onClick={() => dispatch(deleteContact(item.id))}
-                    onClick={()=>dispatch(asyncDeleteContact(item.id))}
+                    onClick={() => dispatch(asyncDeleteContact(item.id))}
                   >
                     Delete
                   </button>

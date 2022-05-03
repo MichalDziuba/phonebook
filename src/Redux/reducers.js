@@ -1,16 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { useSelector } from "react-redux";
 import {
   userLogin,
   userLogout,
   userSignup,
   addContactToApi,
-} from "./connections-api";
-import {
   fetchContactsFromApi,
-  postContactsToApi,
-  deleteContactFromApi,
-} from "./mockapi";
+
+} from "./connections-api";
+import { deleteContactFromApi } from "./mockapi";
 
 const initialState = {
   items: [],
@@ -21,15 +18,15 @@ const initialState = {
 };
 export const asyncFetchContacts = createAsyncThunk(
   "phonebook/fetchContacts",
-  async () => {
-    const response = await fetchContactsFromApi();
+  async (token) => {
+    const response = await fetchContactsFromApi(token);
     return response.data;
   }
 );
 export const asyncAddContact = createAsyncThunk(
   "phonebook/addContact",
-  async (token, contact) => {
-    const response = await addContactToApi(token, contact);
+  async (contact) => {
+    const response = await addContactToApi(contact.token, contact.contactInfo);
     return response.data;
   }
 );
@@ -66,53 +63,50 @@ export const contactListSlice = createSlice({
   name: "contactList",
   initialState,
   reducers: {
-    // addContact: (state, action) => ({
-    //   ...state,
-    //   items: [...state.items, action.payload],
-    // }),
-    // deleteContact: (state, action) => ({
-    //   ...state,
-    //   items: [...state.items.filter(({ id }) => id !== action.payload)],
-    // }),
-
     filterContacts: (state, action) => ({ ...state, filter: action.payload }),
   },
   extraReducers: (builder) => {
     builder
+      //POBIERANIE KONTAKTÓW
       .addCase(asyncFetchContacts.pending, (state) => {
-        state.status = "loading";
+        // state.status = "loading";
       })
       .addCase(asyncFetchContacts.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.items = state.items.concat(action.payload);
+        state.status = "idle";
       })
-      .addCase(asyncAddContact.pending, state => {
-        state.status ='loading'
+      //DODAWANIE NOWEGO KONTATKU
+      .addCase(asyncAddContact.pending, (state) => {
+        state.status = "loading";
       })
       .addCase(asyncAddContact.fulfilled, (state, action) => {
-        state.status ='succeeded'
+        state.status = "succeeded";
         state.items.push(action.payload);
-        
       })
+      //USUWANIE KONTAKTU
       .addCase(asyncDeleteContact.fulfilled, (state, action) => {
         state.items = action.payload;
       })
+      //REJESTRACJA
       .addCase(asyncAddUser.pending, (state) => {
         state.status = "loading";
       })
       .addCase(asyncAddUser.fulfilled, (state, action) => {
         state.userData = action.payload;
         state.status = "succeeded";
-      
       })
+      //LOGOWANIE
       .addCase(asyncLoginUser.pending, (state) => {
         state.status = "loading";
       })
+
       .addCase(asyncLoginUser.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.userData = action.payload;
-       
+        state.status = "idle";
       })
+      //WYLOGOWYWANIE
       .addCase(asyncLogoutUser.fulfilled, (state) => {
         state.userData = {};
       })

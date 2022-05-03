@@ -14,6 +14,10 @@ export const userLogout = (token) => {
 };
 export const addContactToApi = (token, contact) => {
   api.defaults.headers.Authorization = `Bearer ${token}`;
-  //  api.defaults.headers.Authorization = `${token}`;
  return api.post("/contacts", contact);
 };
+export const fetchContactsFromApi = (token) => {
+  api.defaults.headers.Authorization = `Bearer ${token}`;
+  return axios.get("/contacts");
+};
+

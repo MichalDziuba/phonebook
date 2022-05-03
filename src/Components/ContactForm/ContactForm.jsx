@@ -12,9 +12,8 @@ const ContactForm = () => {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.phonebook.userData.token);
   const contacts = useSelector((state) => state.phonebook.items);
-  console.log(contacts)
-  const contactsNames = contacts.map((e) => e.name)||null;
-  console.log(contactsNames)
+  const contactsNames = contacts.map((e) => e.name);
+ 
 
   const saveContact = (evt) => {
     evt.preventDefault();
@@ -25,12 +24,15 @@ const ContactForm = () => {
     if (contactsNames.includes(contact)) {
       alert(`${contact} is already in contacts!`);
     } else {
-      dispatch(
-        asyncAddContact(token, {
+      let data = {
+        contactInfo: {
           id: nanoid(),
           name: contact,
           number: tel,
-        })
+        },token,
+      }
+      dispatch(
+        asyncAddContact(data)
       );
       form.reset();
     }
