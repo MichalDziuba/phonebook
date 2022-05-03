@@ -20,7 +20,7 @@ const ContactList = () => {
     if (status === "idle") {
       dispatch(asyncFetchContacts(token));
     }
-  }, [status, dispatch,]);
+  }, [status, dispatch]);
   return (
     <div>
       {contacts.length > 0 ? (
@@ -39,7 +39,7 @@ const ContactList = () => {
                     className={styles.button__delete}
                     type="button"
                     // onClick={() => dispatch(deleteContact(item.id))}
-                    onClick={() => dispatch(asyncDeleteContact(item.id))}
+                    onClick={() => dispatch(asyncDeleteContact(item.id,token))}
                   >
                     Delete
                   </button>

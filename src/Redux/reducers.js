@@ -5,9 +5,10 @@ import {
   userSignup,
   addContactToApi,
   fetchContactsFromApi,
+  deleteContactFromApi
 
 } from "./connections-api";
-import { deleteContactFromApi } from "./mockapi";
+// import { deleteContactFromApi } from "./mockapi";
 
 const initialState = {
   items: [],
@@ -32,9 +33,9 @@ export const asyncAddContact = createAsyncThunk(
 );
 export const asyncDeleteContact = createAsyncThunk(
   "phonebook/deleteContact",
-  async (id) => {
-    await deleteContactFromApi(id);
-    const response = await fetchContactsFromApi();
+  async (id,token) => {
+    await deleteContactFromApi(id,token);
+    const response = await fetchContactsFromApi(token);
     return response.data;
   }
 );
@@ -69,12 +70,13 @@ export const contactListSlice = createSlice({
     builder
       //POBIERANIE KONTAKTÓW
       .addCase(asyncFetchContacts.pending, (state) => {
-        // state.status = "loading";
+        state.status = "loading";
       })
       .addCase(asyncFetchContacts.fulfilled, (state, action) => {
-        state.status = "succeeded";
+       
         state.items = state.items.concat(action.payload);
-        state.status = "idle";
+        state.status = "succeeded";
+        
       })
       //DODAWANIE NOWEGO KONTATKU
       .addCase(asyncAddContact.pending, (state) => {

@@ -18,6 +18,9 @@ export const addContactToApi = (token, contact) => {
 };
 export const fetchContactsFromApi = (token) => {
   api.defaults.headers.Authorization = `Bearer ${token}`;
-  return axios.get("/contacts");
+  return api.get("/contacts");
 };
-
+export const deleteContactFromApi = (id,token) => {
+  api.defaults.headers.Authorization = `Bearer ${token}`;
+  return api.delete(`/contacts/${id}`);
+};
