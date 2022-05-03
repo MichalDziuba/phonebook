@@ -14,13 +14,14 @@ export const userLogout = (token) => {
 };
 export const addContactToApi = (token, contact) => {
   api.defaults.headers.Authorization = `Bearer ${token}`;
- return api.post("/contacts", contact);
+  return api.post("/contacts", contact);
 };
 export const fetchContactsFromApi = (token) => {
   api.defaults.headers.Authorization = `Bearer ${token}`;
   return api.get("/contacts");
 };
-export const deleteContactFromApi = (id,token) => {
+export const deleteContactFromApi = (id, token) => {
   api.defaults.headers.Authorization = `Bearer ${token}`;
   return api.delete(`/contacts/${id}`);
 };
+ 

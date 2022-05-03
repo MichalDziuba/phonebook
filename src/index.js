@@ -11,22 +11,27 @@ import { Navigation } from "./Components/Navigation/Navigation.jsx";
 import { LoginForm } from "./Components/Login/Login";
 import { RegisterForm } from "./Components/Register/Register";
 import { PrivateRoute } from "./Routes/PrivateRoute/PrivateRoute";
+import { PersistGate } from "redux-persist/integration/react";
+import { persistStore } from "redux-persist";
+let persistor = persistStore(store);
 ReactDOM.render(
   // <React.StrictMode>
   <Provider store={store}>
-    <BrowserRouter>
-      <Suspense fallback="We are working for you! Please wait a second">
-        <Routes>
-          <Route path="/" element={<Navigation />} />
-          <Route path="login" element={<LoginForm />} />
-          <Route path="register" element={<RegisterForm />} />
-          <Route element={<PrivateRoute/>}>
-            <Route path="contacts" element={<Phonebook />} />
-          </Route>
-          <Route path="*" element=<div>THERES NOTHING HERE</div>/>
-        </Routes>
-      </Suspense>
-    </BrowserRouter>
+    {/* <PersistGate loading={null} persistor={persistor}> */}
+      <BrowserRouter>
+        <Suspense fallback="We are working for you! Please wait a second">
+          <Routes>
+            <Route path="/" element={<Navigation />} />
+            <Route path="login" element={<LoginForm />} />
+            <Route path="register" element={<RegisterForm />} />
+            <Route element={<PrivateRoute />}>
+              <Route path="contacts" element={<Phonebook />} />
+            </Route>
+            <Route path="*" element=<div>THERES NOTHING HERE</div> />
+          </Routes>
+        </Suspense>
+      </BrowserRouter>
+    {/* </PersistGate> */}
   </Provider>,
   // </React.StrictMode >
   document.getElementById("root")
