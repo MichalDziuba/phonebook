@@ -20,7 +20,7 @@ export const fetchContactsFromApi = (token) => {
   api.defaults.headers.Authorization = `Bearer ${token}`;
   return api.get("/contacts");
 };
-export const deleteContactFromApi = (id, token) => {
+export const deleteContactFromApi = ( token,id) => {
   api.defaults.headers.Authorization = `Bearer ${token}`;
   return api.delete(`/contacts/${id}`);
 };

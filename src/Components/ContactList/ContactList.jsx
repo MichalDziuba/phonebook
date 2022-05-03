@@ -39,7 +39,7 @@ const ContactList = () => {
                     className={styles.button__delete}
                     type="button"
                     // onClick={() => dispatch(deleteContact(item.id))}
-                    onClick={() => dispatch(asyncDeleteContact(item.id,token))}
+                    onClick={() => dispatch(asyncDeleteContact(token,item.id))}
                   >
                     Delete
                   </button>
