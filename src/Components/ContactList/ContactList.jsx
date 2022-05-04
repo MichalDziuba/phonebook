@@ -21,6 +21,11 @@ const ContactList = () => {
       dispatch(asyncFetchContacts(token));
     }
   }, [status, dispatch]);
+  const deleteContact = (token,id) => {
+    const selectedToken = token;
+    const itemId = id;
+    dispatch(asyncDeleteContact(token,id))
+  }
   return (
     <div>
       {contacts.length > 0 ? (
@@ -39,7 +44,15 @@ const ContactList = () => {
                     className={styles.button__delete}
                     type="button"
                     // onClick={() => dispatch(deleteContact(item.id))}
-                    onClick={() => dispatch(asyncDeleteContact(token,item.id))}
+                    // onClick={() => dispatch(asyncDeleteContact(token, item.id))}
+                    onClick={() => {
+                      let data = {
+                        contactInfo: {
+                          id:item.id
+                        },token
+                      }
+                      dispatch(asyncDeleteContact(data))
+                    }}
                   >
                     Delete
                   </button>

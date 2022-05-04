@@ -33,9 +33,9 @@ export const asyncAddContact = createAsyncThunk(
 );
 export const asyncDeleteContact = createAsyncThunk(
   "phonebook/deleteContact",
-  async (token,id) => {
-    await deleteContactFromApi(token,id);
-    const response = await fetchContactsFromApi(token);
+  async (contact) => {
+    await deleteContactFromApi(contact.token,contact.contactInfo.id);
+    const response = await fetchContactsFromApi(contact.token);
     return response.data;
   }
 );
