@@ -1,10 +1,9 @@
 import React from "react";
-import style from "./ContactForm.module.css";
+import styles from "./ContactForm.module.css";
 import PropTypes from "prop-types";
 import Input from "../Input/Input";
 import Label from "../Label/Label";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
 import { nanoid } from "nanoid";
 import { asyncAddContact } from "../../Redux/reducers";
 
@@ -38,9 +37,10 @@ const ContactForm = () => {
     }
   };
   return (
-    <div>
-      <form onSubmit={saveContact} className={style.form}>
-        <div className={style.div__wrapper}>
+    <div className={styles.ContactForm__wrapper}>
+      <form onSubmit={saveContact} className={styles.form}>
+        <p className={styles.form__p}>Add a new Contact:</p>
+        <div className={styles.div__wrapper}>
           <Label text="Name:" />
           <Input
             type="text"
@@ -49,7 +49,7 @@ const ContactForm = () => {
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           />
         </div>
-        <div className={style.div__wrapper}>
+        <div className={styles.div__wrapper}>
           <Label text="Number:" />
           <Input
             type="tel"
@@ -58,7 +58,7 @@ const ContactForm = () => {
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           />
         </div>
-        <button type="submit" className={style.form__button}>
+        <button type="submit" className={styles.form__button}>
           Add Contact
         </button>
       </form>

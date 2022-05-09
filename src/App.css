@@ -1,7 +1,8 @@
 .App {
-  display:grid;
+  /* display:flex;
   margin-left: 30px;
-  margin-top: 50px;
+  margin-top: 50px; */
+color:#fff;
 }
 .loading{
   font-size:40px;
@@ -9,4 +10,12 @@
 }
 *{
   font-family: 'Montserrat', sans-serif;
+
+}
+.root{
+ background: linear-gradient(0deg, #ee0979 0%, #ff6a00 100%);
+  background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: scroll;
+    background-size: cover
 }

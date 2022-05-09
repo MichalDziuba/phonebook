@@ -13,6 +13,12 @@
     font-size: 18px;
 }
 .form__button:hover{
-    background-color: rgb(63, 196, 248);
+    background-color: #7600dc;
     color: white;
+}
+.form__p{
+    font-size: 24px;
+}
+.ContactForm__wrapper{
+    margin-bottom: 20px;
 }

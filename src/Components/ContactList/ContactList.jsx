@@ -7,7 +7,6 @@ import Filter from "../Filter/Filter";
 import { asyncDeleteContact } from "../../Redux/reducers";
 import axios from "axios";
 import { asyncFetchContacts } from "../../Redux/reducers";
-
 axios.defaults.baseURL = "https://62486dce20197bb4626917a1.mockapi.io/";
 
 const ContactList = () => {
@@ -20,12 +19,7 @@ const ContactList = () => {
     if (status === "idle") {
       dispatch(asyncFetchContacts(token));
     }
-  }, [status, dispatch]);
-  const deleteContact = (token,id) => {
-    const selectedToken = token;
-    const itemId = id;
-    dispatch(asyncDeleteContact(token,id))
-  }
+  }, [status, dispatch,token]);
   return (
     <div>
       {contacts.length > 0 ? (
@@ -43,15 +37,15 @@ const ContactList = () => {
                   <button
                     className={styles.button__delete}
                     type="button"
-                    // onClick={() => dispatch(deleteContact(item.id))}
-                    // onClick={() => dispatch(asyncDeleteContact(token, item.id))}
+                
                     onClick={() => {
                       let data = {
                         contactInfo: {
-                          id:item.id
-                        },token
-                      }
-                      dispatch(asyncDeleteContact(data))
+                          id: item.id,
+                        },
+                        token,
+                      };
+                      dispatch(asyncDeleteContact(data));
                     }}
                   >
                     Delete

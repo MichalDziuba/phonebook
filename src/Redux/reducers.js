@@ -9,7 +9,7 @@ import {
 
 } from "./connections-api";
 // import { deleteContactFromApi } from "./mockapi";
-
+import Notiflix from "notiflix";
 const initialState = {
   items: [],
   filter: "",
@@ -98,6 +98,9 @@ export const contactListSlice = createSlice({
         state.userData = action.payload;
         state.status = "succeeded";
       })
+      .addCase(asyncAddUser.rejected, (action) => {
+        Notiflix.Notify.info('Something went wrong. Check all fields and try again!')
+      })
       //LOGOWANIE
       .addCase(asyncLoginUser.pending, (state) => {
         state.status = "loading";
@@ -107,6 +110,9 @@ export const contactListSlice = createSlice({
         state.status = "succeeded";
         state.userData = action.payload;
         state.status = "idle";
+      })
+      .addCase(asyncLoginUser.rejected, (action)=> {
+  Notiflix.Notify.info("Email or password incorrect!");
       })
       //WYLOGOWYWANIE
       .addCase(asyncLogoutUser.fulfilled, (state) => {

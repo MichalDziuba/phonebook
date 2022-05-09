@@ -4,6 +4,7 @@ import Label from "../Label/Label";
 import { asyncLoginUser } from "../../Redux/reducers";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import styles from './Login.module.css'
 export const LoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -23,31 +24,30 @@ export const LoginForm = () => {
       "email": email,
       "password":password
     }))
-    console.log(state)
   }
   return (
     <form onSubmit={handleLogin}>
       <div>
-        <Label text="email" />
+        <Label text="Email:" />
         <Input
           type="email"
           name="email"
           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-          title="Type your email"
-          value="guerrilasdasla00@gamail.com"
+          placeholder="Enter your email"
+          
         />
       </div>
       <div>
-        <Label text="password" />
+        <Label text="Password:" />
         <Input
           type="password"
           name="password"
-          // pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$"
-          title="Type your password"
-          value='przykladowehaslo'
+          pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$"
+          placeholder="Enter your password"
+         
         />
       </div>
-      <button type="submit">Login</button>
+      <button type="submit" className={styles.button__login}>Login</button>
     </form>
   );
 };
