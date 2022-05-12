@@ -8,7 +8,6 @@ import styles from './Login.module.css'
 export const LoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const state = useSelector(state => state)
   const token=useSelector(state=>state.phonebook.userData.token)
   useEffect(() => {
     if (token) {
@@ -26,28 +25,30 @@ export const LoginForm = () => {
     }))
   }
   return (
-    <form onSubmit={handleLogin}>
-      <div>
-        <Label text="Email:" />
-        <Input
-          type="email"
-          name="email"
-          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-          placeholder="Enter your email"
-          
-        />
-      </div>
-      <div>
-        <Label text="Password:" />
-        <Input
-          type="password"
-          name="password"
-          pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$"
-          placeholder="Enter your password"
-         
-        />
-      </div>
-      <button type="submit" className={styles.button__login}>Login</button>
-    </form>
+    <div className={styles.login__wrapper}>
+      <form onSubmit={handleLogin}>
+        <div>
+          <Label text="Email:" />
+          <Input
+            type="email"
+            name="email"
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+            placeholder="Enter your email"
+          />
+        </div>
+        <div>
+          <Label text="Password:" />
+          <Input
+            type="password"
+            name="password"
+            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$"
+            placeholder="Enter your password"
+          />
+        </div>
+        <button type="submit" className={styles.button__login}>
+          Login
+        </button>
+      </form>
+    </div>
   );
 };

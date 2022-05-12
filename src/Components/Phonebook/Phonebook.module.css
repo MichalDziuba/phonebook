@@ -1,5 +1,8 @@
 .phonebook{
-    display: block;
-    width: 100%;
-    margin-left: 10px;
+    display: grid;
+     width: 100vw-10px;
+    margin:10px;
+justify-content: center;
+padding: auto;
+
 }

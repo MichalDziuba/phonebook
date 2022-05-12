@@ -5,3 +5,7 @@
   color: #fff;
 background: #7600dc;
 }
+.login__wrapper{
+  display: flex;
+  justify-content: center;
+}

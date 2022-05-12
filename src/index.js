@@ -15,16 +15,6 @@ import { persistStore } from "redux-persist";
 import "bootstrap/dist/css/bootstrap.min.css";
 const persistor = persistStore(store);
 
-// const Navigation = lazy(
-//   () =>
-//     import(
-//       "./Components/Navigation/Navigation.jsx"
-//     ) /* webpackChunkName: "navigation" */
-// );
-// const Phonebook = lazy(() =>
-//   import('./Components/Phonebook/Phonebook.jsx'))
-// const LoginForm = lazy(() => import('./Components/Login/Login'));
-// const RegisterForm = lazy(() => import("./Components/Register/Register.jsx"));
 ReactDOM.render(
   // <React.StrictMode>
   <Provider store={store}>

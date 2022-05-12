@@ -1,7 +1,8 @@
 .button__logout{
       border-radius: 4px;
      border: none;
-  padding: 6px 16px;
+
+  max-height: 40px;
   color: #fff;
 background: #7600dc;
 max-width: 100px;
@@ -10,9 +11,17 @@ margin-bottom: 10px;
 }
 .userMenu__wrapper{
     margin-top: 20px;
-    margin-left: 10px; 
+    margin-left: 10px;
+    margin-right: 10px;
+     display: flex;
+     flex: row;
+    justify-content: space-between;
 }
 .userMenu__info{
     font-size: 18px;
     font-weight: 600;
+}
+.userMenu__userData{
+    display: flex;
+    flex-direction: column;
 }

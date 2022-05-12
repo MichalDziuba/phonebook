@@ -35,6 +35,7 @@ export const RegisterForm = () => {
 }
 
   return (
+    <div className={styles.register__wrapper}>
     <form onSubmit={handleRegister}>
       <div>
         <Label text="Name:" />
@@ -77,6 +78,7 @@ export const RegisterForm = () => {
         />
       </div>
       <button type="submit" className={styles.button__register}>Register</button>
-    </form>
+      </form>
+    </div>
   );
 };

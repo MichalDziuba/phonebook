@@ -33,11 +33,10 @@ const ContactList = () => {
               )
               .map((item) => (
                 <li key={nanoid()} className={styles.contact__item}>
-                  {item.name}: {item.number}
+                  {item.name}: <br></br>{item.number}
                   <button
                     className={styles.button__delete}
                     type="button"
-                
                     onClick={() => {
                       let data = {
                         contactInfo: {

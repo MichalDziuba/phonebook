@@ -13,12 +13,13 @@ export const UserMenu = () => {
     }
     return (
       <div className={styles.userMenu__wrapper}>
+        <div className={styles.userMenu__userData}>
+        <p className={styles.userMenu__info}> Hello {userName}!</p>
+          <p className={styles.userMenu__info}>Your email: {userEmail} </p>
+        </div>
         <button onClick={logoutUser} className={styles.button__logout}>
           Logout
         </button>
-
-        <p className={styles.userMenu__info}> Hello {userName}!</p>
-        <p className={styles.userMenu__info}>Your email: {userEmail} </p>
       </div>
     );
 }
