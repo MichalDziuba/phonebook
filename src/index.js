@@ -13,6 +13,7 @@ import { PrivateRoute } from "./Routes/PrivateRoute/PrivateRoute";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { NotFound } from "./Components/NotFound/NotFound";
 const persistor = persistStore(store);
 
 ReactDOM.render(
@@ -31,7 +32,7 @@ ReactDOM.render(
             <Route element={<PrivateRoute />}>
               <Route path="contacts" element={<Phonebook />} />
             </Route>
-            <Route path="*" element= <div>THERES NOTHING HERE</div> />
+            <Route path="*" element= {<NotFound/>} />
           </Routes>
         </Suspense>
     </BrowserRouter>

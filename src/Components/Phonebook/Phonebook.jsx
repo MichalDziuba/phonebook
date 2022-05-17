@@ -12,18 +12,10 @@ export const Phonebook = () => {
     <div className={styles.phonebook__wrapper}>
       {" "}
       <UserMenu />
-      
       <div className={styles.phonebook}>
         <h1 className={styles.phonebook__tittle}>Phonebook</h1>
         <ContactForm />
-        {stateStatus === "loading" ? (
-          
-            <Loader />
-           
-          
-        ) : (
-          <ContactList />
-        )}
+        {stateStatus === "loading" ? <Loader /> : <ContactList />}
         <Outlet />
       </div>
     </div>
