@@ -4,5 +4,22 @@
     margin:10px;
 justify-content: center;
 padding: auto;
-
+font-family: 'Roboto Flex', sans-serif;
+}
+.phonebook__tittle{
+   font-family: 'Lobster', cursive;
+    font-size: 40px;
+    font-weight: 400;
+    display: inline-block;
+}
+.phonebook__tittle::after{
+    content: "";
+    display: inline-block;
+    width: 44px;
+    
+    height: 44px;
+    background-size: contain;
+    margin-left:26px;
+    background-image: url("../../Images/book.svg");
+    fill: red;
 }

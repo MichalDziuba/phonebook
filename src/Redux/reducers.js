@@ -1,11 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import {
-  userLogin,
-  userLogout,
-  userSignup,
-  addContactToApi,
-  fetchContactsFromApi,
-  deleteContactFromApi
+  userApi,
+  contactsApi
 
 } from "./connections-api";
 // import { deleteContactFromApi } from "./mockapi";
@@ -20,43 +16,49 @@ const initialState = {
 export const asyncFetchContacts = createAsyncThunk(
   "phonebook/fetchContacts",
   async (token) => {
-    const response = await fetchContactsFromApi(token);
+    const response = await contactsApi.fetchContactsFromApi(token);
     return response.data;
   }
 );
 export const asyncAddContact = createAsyncThunk(
   "phonebook/addContact",
   async (contact) => {
-    const response = await addContactToApi(contact.token, contact.contactInfo);
+    const response = await contactsApi.addContactToApi(
+      contact.token,
+      contact.contactInfo
+    );
     return response.data;
   }
 );
 export const asyncDeleteContact = createAsyncThunk(
   "phonebook/deleteContact",
   async (contact) => {
-    await deleteContactFromApi(contact.token,contact.contactInfo.id);
-    const response = await fetchContactsFromApi(contact.token);
+    await contactsApi.deleteContactFromApi(
+      contact.token,
+      contact.contactInfo.id
+    );
+    const response = await contactsApi.fetchContactsFromApi(contact.token);
     return response.data;
   }
 );
 export const asyncAddUser = createAsyncThunk(
   "phonebook/addUser",
   async (user) => {
-    const response = await userSignup(user);
+    const response = await userApi.userSignup(user);
     return response.data;
   }
 );
 export const asyncLoginUser = createAsyncThunk(
   "phonebook/loginUser",
   async (user) => {
-    const response = await userLogin(user);
+    const response = await userApi.userLogin(user);
     return response.data;
   }
 );
 export const asyncLogoutUser = createAsyncThunk(
   "phonebook/logout",
   async (token) => {
-    const response = await userLogout(token);
+    const response = await userApi.userLogout(token);
     return response.data;
   }
 );
@@ -89,6 +91,7 @@ export const contactListSlice = createSlice({
       //USUWANIE KONTAKTU
       .addCase(asyncDeleteContact.fulfilled, (state, action) => {
         state.items = action.payload;
+      
       })
       //REJESTRACJA
       .addCase(asyncAddUser.pending, (state) => {
@@ -97,6 +100,7 @@ export const contactListSlice = createSlice({
       .addCase(asyncAddUser.fulfilled, (state, action) => {
         state.userData = action.payload;
         state.status = "succeeded";
+
       })
       .addCase(asyncAddUser.rejected, (action) => {
         Notiflix.Notify.info('Something went wrong. Check all fields and try again!')
@@ -110,6 +114,7 @@ export const contactListSlice = createSlice({
         state.status = "succeeded";
         state.userData = action.payload;
         state.status = "idle";
+
       })
       .addCase(asyncLoginUser.rejected, (action)=> {
   Notiflix.Notify.info("Email or password incorrect!");
@@ -117,9 +122,11 @@ export const contactListSlice = createSlice({
       //WYLOGOWYWANIE
       .addCase(asyncLogoutUser.fulfilled, (state) => {
         state.userData = {};
+
       })
       .addCase(asyncLogoutUser.rejected, (state) => {
         state.userData = {};
+
       });
   },
 });

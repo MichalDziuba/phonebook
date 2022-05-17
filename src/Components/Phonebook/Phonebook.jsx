@@ -13,7 +13,7 @@ export const Phonebook = () => {
       {" "}
       <UserMenu />
       <div className={styles.phonebook}>
-        <h1>Phonebook</h1>
+        <h1 className={styles.phonebook__tittle}>Phonebook</h1>
         <ContactForm />
         {stateStatus === "loading" ? (
           <div className="loading">

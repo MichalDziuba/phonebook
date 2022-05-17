@@ -1,4 +1,4 @@
-import { React, lazy, Suspense } from "react";
+import { React, Suspense } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -16,7 +16,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 const persistor = persistStore(store);
 
 ReactDOM.render(
-  // <React.StrictMode>
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
       <BrowserRouter>
@@ -32,14 +31,14 @@ ReactDOM.render(
             <Route element={<PrivateRoute />}>
               <Route path="contacts" element={<Phonebook />} />
             </Route>
-            <Route path="*" element=<div>THERES NOTHING HERE</div> />
+            <Route path="*" element= <div>THERES NOTHING HERE</div> />
           </Routes>
         </Suspense>
     </BrowserRouter>
     
     </PersistGate>
   </Provider>,
-  // </React.StrictMode >
+
   document.getElementById("root")
 );
 

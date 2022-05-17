@@ -41,7 +41,7 @@ export const LoginForm = () => {
           <Input
             type="password"
             name="password"
-            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$"
+            // pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$"
             placeholder="Enter your password"
           />
         </div>

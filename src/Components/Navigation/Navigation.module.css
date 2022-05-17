@@ -1,13 +1,15 @@
 .navigation{
     display: grid;
-    margin-top: 50px;
+    padding-top: 50px;
     justify-content: center;
-    
+    font-family: 'Roboto Flex', sans-serif;
 
 }
 .navigation__tittle{
     font-size: 40px;
+font-family: 'Lobster', cursive;
 }
+
 .navigation__wrapper{
     display: flex;
     flex-direction: row;
@@ -15,10 +17,10 @@
     text-decoration: none;
     margin-top: 15px;
     margin-bottom: 20px;
+
 }
 .navigation__wrapper a{
      border-radius: 4px;
   padding: 10px 20px;
-  /* margin-right: 10px; */
   text-decoration: none;
 }

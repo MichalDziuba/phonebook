@@ -15,6 +15,7 @@ const ContactList = () => {
   const dispatch = useDispatch();
   const status = useSelector((state) => state.phonebook.status);
   const token = useSelector((state) => state.phonebook.userData.token);
+
   useEffect(() => {
     if (status === "idle") {
       dispatch(asyncFetchContacts(token));
