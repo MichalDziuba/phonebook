@@ -10,7 +10,7 @@ const initialState = {
   items: [],
   filter: "",
   isLoading: false,
-  status: "idle",
+  status: "",
   userData: {},
 };
 export const asyncFetchContacts = createAsyncThunk(
@@ -122,10 +122,12 @@ export const contactListSlice = createSlice({
       //WYLOGOWYWANIE
       .addCase(asyncLogoutUser.fulfilled, (state) => {
         state.userData = {};
+        state.items = [];
 
       })
       .addCase(asyncLogoutUser.rejected, (state) => {
         state.userData = {};
+        state.items = [];
 
       });
   },
