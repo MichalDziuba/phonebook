@@ -10,7 +10,10 @@ Phonebook is a web application created using JavaScript, React, and Redux. It al
 ## Features
 Add, edit, and delete contacts
 Search for contacts by name or phone number
-Sort contacts by name or phone number
+Sort contacts by name or phone number.
+
+## Backend
+Phonebook uses the Connections API as its backend.
 
 ## Usage
 Upon launching the application, you will be prompted to log in or register if you don't have an account yet. After logging in, you will be taken to the main page where you can view, add, edit, and delete your contacts. You can use the search bar to search for specific contacts by name or phone number, and you can use the sorting options to change the order in which your contacts are displayed.
